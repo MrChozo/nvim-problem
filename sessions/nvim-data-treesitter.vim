@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/.config/nvim
+cd ~/AppData/Local/nvim-data
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -13,16 +13,14 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +185 ~/Documents/education-notes/Unix-like\ CLI\ Tools/Vim\ and\ NeoVim/vimTricks.md
-badd +32 init.lua
-badd +1 ~/.config/nvim
-badd +1 ~/AppData/Local/nvim/lua/config/lazy.lua
-badd +18 ~/AppData/Local/nvim/lua/plugins/treesitter.nvim.lua
-badd +2 lua/plugins/folke.tokyonight.nvim.lua
+badd +1 ~/AppData/Local/nvim-data
+badd +22 lazy/nvim-treesitter/lua/nvim-treesitter.lua
+badd +135 lazy/nvim-treesitter/lua/nvim-treesitter/configs.lua
+badd +1 health://
 argglobal
 %argdel
-$argadd H:/My\ Drive/Personal\ Files/Career\ Development/jobsAppliedFor/CompuNet\ -\ Solutions\ Architect\ -\ Software\ Engineer/20241015-call-notes.md
-edit init.lua
+$argadd ~/AppData/Local/nvim-data
+edit lazy/nvim-treesitter/lua/nvim-treesitter/configs.lua
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -39,10 +37,35 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 104 + 104) / 209)
-exe 'vert 2resize ' . ((&columns * 104 + 104) / 209)
+exe 'vert 1resize ' . ((&columns * 135 + 104) / 209)
+exe 'vert 2resize ' . ((&columns * 73 + 104) / 209)
 argglobal
-balt ~/Documents/education-notes/Unix-like\ CLI\ Tools/Vim\ and\ NeoVim/vimTricks.md
+balt lazy/nvim-treesitter/lua/nvim-treesitter.lua
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+silent! normal! zE
+410,441fold
+let &fdl = &fdl
+let s:l = 135 - ((49 * winheight(0) + 25) / 50)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 135
+normal! 018|
+lcd ~/AppData/Local/nvim-data
+wincmd w
+argglobal
+if bufexists(fnamemodify("~/AppData/Local/nvim-data/lazy/nvim-treesitter/lua/nvim-treesitter.lua", ":p")) | buffer ~/AppData/Local/nvim-data/lazy/nvim-treesitter/lua/nvim-treesitter.lua | else | edit ~/AppData/Local/nvim-data/lazy/nvim-treesitter/lua/nvim-treesitter.lua | endif
+if &buftype ==# 'terminal'
+  silent file ~/AppData/Local/nvim-data/lazy/nvim-treesitter/lua/nvim-treesitter.lua
+endif
+balt ~/AppData/Local/nvim-data/lazy/nvim-treesitter/lua/nvim-treesitter/configs.lua
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -53,49 +76,16 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 23 - ((22 * winheight(0) + 25) / 50)
+let s:l = 22 - ((21 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 23
-normal! 011|
-lcd ~/.config/nvim
+keepjumps 22
+normal! 08|
+lcd ~/AppData/Local/nvim-data
 wincmd w
-argglobal
-if bufexists(fnamemodify("~/Documents/education-notes/Unix-like\ CLI\ Tools/Vim\ and\ NeoVim/vimTricks.md", ":p")) | buffer ~/Documents/education-notes/Unix-like\ CLI\ Tools/Vim\ and\ NeoVim/vimTricks.md | else | edit ~/Documents/education-notes/Unix-like\ CLI\ Tools/Vim\ and\ NeoVim/vimTricks.md | endif
-if &buftype ==# 'terminal'
-  silent file ~/Documents/education-notes/Unix-like\ CLI\ Tools/Vim\ and\ NeoVim/vimTricks.md
-endif
-setlocal fdm=expr
-setlocal fde=MarkdownFold()
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-1
-normal! zo
-8
-normal! zo
-33
-normal! zo
-46
-normal! zo
-72
-normal! zo
-72
-normal! zc
-let s:l = 49 - ((48 * winheight(0) + 25) / 50)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 49
-normal! 0
-lcd ~/.config/nvim
-wincmd w
-exe 'vert 1resize ' . ((&columns * 104 + 104) / 209)
-exe 'vert 2resize ' . ((&columns * 104 + 104) / 209)
+exe 'vert 1resize ' . ((&columns * 135 + 104) / 209)
+exe 'vert 2resize ' . ((&columns * 73 + 104) / 209)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

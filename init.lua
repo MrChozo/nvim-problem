@@ -1,7 +1,3 @@
--- Plugin manager
-require("config.lazy")
-
-
 -- ######### Setting Vim options #########
 
 -- Show line numbers
@@ -26,6 +22,11 @@ vim.keymap.set('n', '<Leader>yq', 'gg0vG$"+y:q!<cr>')
 -- folding in Markdown files and creates folds for each heading level in them
 -- for you.
 vim.g.markdown_folding = 1
+
+
+-- ######### Plugin manager #########
+-- Plugins have individual config files in _lua/plugins/_ directory.
+require("config.lazy")
 
 
 
