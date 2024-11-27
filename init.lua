@@ -51,7 +51,6 @@ require("config.lazy")
 -- Plugins have individual boot files in the _lua/plugins/_ directory
 
 -- But some plugins need to be configured after 
-require("config.treesitter")
 require('telescope').setup{
   defaults = {
     -- Default configuration for telescope goes here:
