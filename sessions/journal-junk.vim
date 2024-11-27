@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/.config/nvim
+cd H:/My\ Drive/Personal\ Files/Journal\ junk
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -13,24 +13,21 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +212 ~/Documents/education-notes/Unix-like\ CLI\ Tools/Vim\ and\ NeoVim/vimTricks.md
-badd +18 init.lua
-badd +1 ~/.config/nvim
-badd +1 ~/AppData/Local/nvim/lua/config/lazy.lua
-badd +18 ~/AppData/Local/nvim/lua/plugins/treesitter.nvim.lua
-badd +2 ~/AppData/Local/nvim/lua/plugins/folke.tokyonight.nvim.lua
-badd +1 ~/AppData/Local/nvim/lua/plugins
-badd +1 ~/AppData/Local/nvim/lua/plugins/iamcco.markdown-preview.nvim.lua
-badd +34 ~/Documents/education-notes/Unix-like\ CLI\ Tools/Vim\ and\ NeoVim/neovimSetup.md
+badd +1292 Mental\ Health/therapy-notes.md
+badd +1 H:/My\ Drive/Personal\ Files/Journal\ junk
+badd +25 Mental\ Health/relationship-notes.md
 argglobal
 %argdel
-edit ~/Documents/education-notes/Unix-like\ CLI\ Tools/Vim\ and\ NeoVim/vimTricks.md
+edit Mental\ Health/therapy-notes.md
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
-1wincmd h
+wincmd _ | wincmd |
+vsplit
+2wincmd h
+wincmd w
 wincmd w
 let &splitbelow = s:save_splitbelow
 let &splitright = s:save_splitright
@@ -41,9 +38,23 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 104 + 104) / 209)
-exe 'vert 2resize ' . ((&columns * 104 + 104) / 209)
+exe 'vert 1resize ' . ((&columns * 55 + 104) / 209)
+exe 'vert 2resize ' . ((&columns * 105 + 104) / 209)
+exe 'vert 3resize ' . ((&columns * 47 + 104) / 209)
 argglobal
+enew
+balt Mental\ Health/therapy-notes.md
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+wincmd w
+argglobal
+balt Mental\ Health/relationship-notes.md
 setlocal fdm=expr
 setlocal fde=MarkdownFold()
 setlocal fmr={{{,}}}
@@ -54,43 +65,38 @@ setlocal fdn=20
 setlocal fen
 1
 normal! zo
-113
+1204
 normal! zo
-let s:l = 212 - ((204 * winheight(0) + 25) / 50)
+1237
+normal! zo
+1254
+normal! zo
+1275
+normal! zo
+let s:l = 1283 - ((32 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 212
+keepjumps 1283
 normal! 0
-lcd ~/.config/nvim
+lcd H:/My\ Drive/Personal\ Files/Journal\ junk
 wincmd w
 argglobal
-if bufexists(fnamemodify("~/Documents/education-notes/Unix-like\ CLI\ Tools/Vim\ and\ NeoVim/vimTricks.md", ":p")) | buffer ~/Documents/education-notes/Unix-like\ CLI\ Tools/Vim\ and\ NeoVim/vimTricks.md | else | edit ~/Documents/education-notes/Unix-like\ CLI\ Tools/Vim\ and\ NeoVim/vimTricks.md | endif
-if &buftype ==# 'terminal'
-  silent file ~/Documents/education-notes/Unix-like\ CLI\ Tools/Vim\ and\ NeoVim/vimTricks.md
-endif
-setlocal fdm=expr
-setlocal fde=MarkdownFold()
+enew
+balt H:/My\ Drive/Personal\ Files/Journal\ junk/Mental\ Health/therapy-notes.md
+setlocal fdm=manual
+setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
 setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-1
-normal! zo
-113
-normal! zo
-let s:l = 212 - ((0 * winheight(0) + 25) / 50)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 212
-normal! 0
-lcd ~/.config/nvim
 wincmd w
-exe 'vert 1resize ' . ((&columns * 104 + 104) / 209)
-exe 'vert 2resize ' . ((&columns * 104 + 104) / 209)
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 55 + 104) / 209)
+exe 'vert 2resize ' . ((&columns * 105 + 104) / 209)
+exe 'vert 3resize ' . ((&columns * 47 + 104) / 209)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
